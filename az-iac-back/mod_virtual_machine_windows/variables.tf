@@ -58,10 +58,10 @@ variable "source_image_reference_version" {
   type        = string
 }
 
-variable "computer_name" {
-  description = "computer_name"
-  type        = string
-}
+#variable "computer_name" {
+#  description = "computer_name"
+#  type        = string
+#}
 
 variable "admin_username" {
   description = "admin_username"
@@ -73,10 +73,10 @@ variable "admin_password" {
   type        = string
 }
 
-variable "storage_account_uri" {
-  description = "storage_account_uri"
-  type        = string
-}
+#variable "storage_account_uri" {
+#  description = "storage_account_uri"
+#  type        = string
+#}
 
 variable "tags" {
   description = "tags"

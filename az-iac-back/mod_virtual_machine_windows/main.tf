@@ -7,7 +7,10 @@ resource "azurerm_windows_virtual_machine" "wvm" {
   proximity_placement_group_id = var.proximity_placement_group_id
   admin_username      = var.admin_username
   admin_password      = var.admin_password
-  
+
+  patch_mode = (var.source_image_reference_sku == "2025-datacenter-azure-edition" || var.source_image_reference_sku == "2022-datacenter-azure-edition-hotpatch") ? "AutomaticByPlatform" : null
+  hotpatching_enabled = false
+
   os_disk {
     caching              = var.os_disk_caching
     storage_account_type = var.os_disk_storage_account_type
