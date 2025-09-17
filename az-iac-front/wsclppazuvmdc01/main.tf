@@ -1,5 +1,5 @@
 module "nsg-nic-wsclppazuvmdc01" {
-  source              = "git::https://github.com/bch-devsecops/az-iac-back.git//mod_network_security_group?ref=master"
+  source              = "git::https://github.com/slopted/BCH_IAC//az-iac-back/mod_network_security_group?ref=main"
   name                = "nsg-nic-wsclppazuvmdc01"
   location            = "chilecentral"
   resource_group_name = data.azurerm_resource_group.rg-pp-scl-dc-001.name
@@ -7,7 +7,7 @@ module "nsg-nic-wsclppazuvmdc01" {
 
 module "nic-wsclppazuvmdc01" {
   depends_on                      = [module.nsg-nic-wsclppazuvmdc01]
-  source                         = "git::https://github.com/bch-devsecops/az-iac-back.git//mod_network_interface?ref=master"
+  source                         = "git::https://github.com/slopted/BCH_IAC//az-iac-back/mod_network_interface?ref=main"
   name                           = "nic-wsclppazuvmdc01"
   location                       = "chilecentral"
   resource_group_name            = data.azurerm_resource_group.rg-pp-scl-dc-001.name
@@ -19,7 +19,7 @@ module "nic-wsclppazuvmdc01" {
 
 module "wsclppazuvmdc01" {
   depends_on                         = [module.nic-wsclppazuvmdc01]
-  source                             = "git::https://github.com/bch-devsecops/az-iac-back.git//mod_virtual_machine_windows?ref=master"
+  source                             = "git::https://github.com/slopted/BCH_IAC//az-iac-back/mod_virtual_machine_windows?ref=main"
   name                               = "wsclppazuvmdc01"
   location                           = "chilecentral"
   resource_group_name                = data.azurerm_resource_group.rg-pp-scl-dc-001.name
