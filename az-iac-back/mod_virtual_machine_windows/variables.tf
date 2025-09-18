@@ -4,7 +4,6 @@
 variable "ip_configuration" {
   description = "IP configuration for the virtual machine's network interface"
   type = object({
-    name                          = string
     subnet_id                     = string
     private_ip_address_allocation = optional(string, "Dynamic")
     private_ip_address            = optional(string)
