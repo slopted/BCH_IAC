@@ -4,6 +4,6 @@ terraform {
     resource_group_name  = "AR-TFstate"
     storage_account_name = "sttf1727848146"
     container_name       = "slopted-tfstate"
-    key                  = "azure.terraform.pp.ldz.vnet.vnet-dcpp-scl-001.state"
+    key                  = "azure.terraform.prd.ldz.vnet.vnet-dcprd-scl-001.state"
   }
 }

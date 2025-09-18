@@ -1,3 +1,3 @@
-data "azurerm_resource_group" "rg-pp-scl-dc-001" {
-    name = "rg-pp-scl-dc-001"
+data "azurerm_resource_group" "rg-prd-scl-dc-001" {
+  name = "rg-prd-scl-dc-001"
 }
