@@ -12,7 +12,7 @@ module "wsclppazuvmdc01" {
   admin_username      = "bchuser"
   admin_password      = "BCH_P@ssw0rd!"
   patch_mode          = "AutomaticByPlatform"
-  hotpatching_enabled = true
+  hotpatching_enabled = false
   os_disk = {
     caching              = "ReadWrite"
     storage_account_type = "Premium_LRS"
