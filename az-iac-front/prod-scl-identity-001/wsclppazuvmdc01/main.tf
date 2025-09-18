@@ -13,7 +13,7 @@ module "nic-wsclppazuvmdc01" {
   resource_group_name            = data.azurerm_resource_group.rg-pp-scl-dc-001.name
   ip_configuration_name          = "ipconfig-wsclppazuvmdc01"
   ip_configuration_subnet_id     = data.azurerm_subnet.snet-dcpp-addc-001.id
-  private_ip_address_allocation  = "10.134.9.4"
+  private_ip_address_allocation  = "Dynamic"
   network_security_group_id      = module.nsg-nic-wsclppazuvmdc01.id
 }
 
@@ -23,7 +23,7 @@ module "wsclppazuvmdc01" {
   name                               = "wsclppazuvmdc01"
   location                           = "chilecentral"
   resource_group_name                = data.azurerm_resource_group.rg-pp-scl-dc-001.name
-  network_interface_ids              = module.nic-wsclppazuvmdc01.id
+  network_interface_ids              = [module.nic-wsclppazuvmdc01.id]
   size                               = "Standard_D8s_v3"
   proximity_placement_group_id       = null
   admin_username                     = "bchuser"
