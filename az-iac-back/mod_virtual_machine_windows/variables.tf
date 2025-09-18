@@ -1,3 +1,22 @@
+# ============================================================
+# Virtual Machine Network Interface - Variables
+# ============================================================
+variable "ip_configuration" {
+  description = "IP configuration for the virtual machine's network interface"
+  type = object({
+    name                          = string
+    subnet_id                     = string
+    private_ip_address_allocation = optional(string, "Dynamic")
+    private_ip_address            = optional(string)
+    public_ip_address_id          = optional(string)
+    primary                       = optional(bool, true)
+  })
+}
+
+# ============================================================
+# Virtual Machine Windows - Variables
+# ============================================================
+
 variable "name" {
   description = "name"
   type        = string
@@ -13,55 +32,10 @@ variable "resource_group_name" {
   type        = string
 }
 
-variable "network_interface_ids" {
-  description = "network_interface_ids"
-  type        = list(string)
-}
-
 variable "size" {
   description = "size"
   type        = string
 }
-
-variable "proximity_placement_group_id" {
-  description = "proximity_placement_group_id"
-  type        = string
-}
-
-variable "os_disk_caching" {
-  description = "os_disk_caching"
-  type        = string
-}
-
-variable "os_disk_storage_account_type" {
-  description = "os_disk_storage_account_type"
-  type        = string
-}
-
-variable "source_image_reference_publisher" {
-  description = "source_image_reference_publisher"
-  type        = string
-}
-
-variable "source_image_reference_offer" {
-  description = "source_image_reference_offer"
-  type        = string
-}
-
-variable "source_image_reference_sku" {
-  description = "source_image_reference_sku"
-  type        = string
-}
-
-variable "source_image_reference_version" {
-  description = "source_image_reference_version"
-  type        = string
-}
-
-#variable "computer_name" {
-#  description = "computer_name"
-#  type        = string
-#}
 
 variable "admin_username" {
   description = "admin_username"
@@ -73,14 +47,44 @@ variable "admin_password" {
   type        = string
 }
 
-#variable "storage_account_uri" {
-#  description = "storage_account_uri"
-#  type        = string
-#}
+variable "patch_mode" {
+  description = "Specifies the patch mode for the Windows virtual machine. Possible values are 'Manual', 'AutomaticByOS', or 'AutomaticByPlatform'."
+  type        = string
+  default     = "Manual"
+}
+
+variable "hotpatching_enabled" {
+  description = "Specifies whether hotpatching is enabled for the Windows virtual machine. Set to true to enable hotpatching."
+  type        = bool
+  default     = false
+}
+
+variable "os_disk" {
+  description = "Configuration for the OS disk of the virtual machine"
+  type = object({
+    name                      = optional(string)
+    caching                   = optional(string, "ReadWrite")
+    storage_account_type      = optional(string, "Standard_LRS")
+    disk_size_gb              = optional(number)
+    write_accelerator_enabled = optional(bool, false)
+  })
+  default = {}
+}
+
+variable "source_image_reference" {
+  description = "The source image reference for the virtual machine."
+  type = object({
+    publisher = string
+    offer     = string
+    sku       = string
+    version   = string
+  })
+  default = null
+}
 
 variable "tags" {
   description = "tags"
-  type        = map
+  type        = map(any)
   default     = null
 }
 
