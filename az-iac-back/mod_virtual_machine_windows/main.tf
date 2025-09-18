@@ -30,22 +30,14 @@ resource "azurerm_windows_virtual_machine" "wvm" {
     "2022-datacenter-azure-edition-core",
     "2022-datacenter-azure-edition-core-smalldisk",
     "2022-datacenter-azure-edition-hotpatch",
-    "2022-datacenter-azure-edition-hotpatch-smalldisk",
-    "2025-datacenter-azure-edition",
-    "2025-datacenter-azure-edition-smalldisk",
-    "2025-datacenter-azure-edition-core",
-    "2025-datacenter-azure-edition-core-smalldisk"
+    "2022-datacenter-azure-edition-hotpatch-smalldisk"
   ], lower(var.source_image_reference.sku)) ? "AutomaticByPlatform" : var.patch_mode
 
   hotpatching_enabled = contains([
     "2022-datacenter-azure-edition-core",
     "2022-datacenter-azure-edition-core-smalldisk",
     "2022-datacenter-azure-edition-hotpatch",
-    "2022-datacenter-azure-edition-hotpatch-smalldisk",
-    "2025-datacenter-azure-edition",
-    "2025-datacenter-azure-edition-smalldisk",
-    "2025-datacenter-azure-edition-core",
-    "2025-datacenter-azure-edition-core-smalldisk"
+    "2022-datacenter-azure-edition-hotpatch-smalldisk"
   ], lower(var.source_image_reference.sku)) ? true : var.hotpatching_enabled
 
   os_disk {
