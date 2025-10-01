@@ -31,6 +31,12 @@ variable "resource_group_name" {
   type        = string
 }
 
+variable "network_interface_ids" {
+  description = "List of network interface IDs to attach to the virtual machine"
+  type        = list(string)
+  default     = []
+}
+
 variable "size" {
   description = "size"
   type        = string
