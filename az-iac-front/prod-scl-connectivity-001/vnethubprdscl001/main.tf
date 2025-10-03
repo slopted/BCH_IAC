@@ -149,10 +149,6 @@ module "snet-hubprd-dns-outbound-001" {
 #   Firewall Palo Alto
 # ===========================
 
-# WARNING: The following Palo Alto Firewall subnet configuration is pending review and approval by the project's team.
-# Please verify address ranges, naming conventions, and requirements before deployment.
-
-
 module "snet-hubprd-fwpl-trust-001" {
   #source               = "git::https://github.com/bch-devsecops/az-iac-back.git//mod_subnet?ref=master"
   source = "../../../az-iac-back/mod_subnet"
@@ -216,6 +212,5 @@ module "GatewaySubnet" {
   resource_group_name  = data.azurerm_resource_group.rg-prd-scl-hub-001.name
   virtual_network_name = module.vnet-hubprd-scl-001.name
   address_prefixes     = ["10.133.7.0/26"]
-
 }
 
