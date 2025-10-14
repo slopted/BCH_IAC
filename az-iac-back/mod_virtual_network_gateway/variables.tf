@@ -106,7 +106,7 @@ variable "type" {
 variable "virtual_wan_traffic_enabled" {
   description = "Is Virtual WAN traffic enabled?"
   type        = bool
-  default     = false
+  default     = true
 }
 
 variable "vpn_type" {
@@ -117,28 +117,16 @@ variable "vpn_type" {
     error_message = "vpn_type must be 'PolicyBased' or 'RouteBased'."
   }
 }
-
-variable "ip_configuration_name" {
-  description = "The name of the IP configuration for the Virtual Network Gateway."
-  type        = string
-}
-
-variable "ip_configuration_private_ip_address_allocation" {
-  description = "The private IP address allocation method for the IP configuration. Possible values are 'Dynamic' or 'Static'."
-  type        = string
+variable "ip_configuration" {
+  description = "IP configuration block for the Virtual Network Gateway."
+  type = object({
+    name                          = string
+    private_ip_address_allocation = string
+    subnet_id                     = string
+    public_ip_address_id          = optional(string,null)
+  })
   validation {
-    condition     = var.ip_configuration_private_ip_address_allocation == "Dynamic" || var.ip_configuration_private_ip_address_allocation == "Static"
+    condition     = var.ip_configuration.private_ip_address_allocation == "Dynamic" || var.ip_configuration.private_ip_address_allocation == "Static"
     error_message = "private_ip_address_allocation must be 'Dynamic' or 'Static'."
   }
-}
-
-variable "ip_configuration_subnet_id" {
-  description = "The subnet ID for the IP configuration."
-  type        = string
-}
-
-variable "ip_configuration_public_ip_address_id" {
-  description = "The public IP address ID for the IP configuration."
-  type        = string
-  default     = null
 }
