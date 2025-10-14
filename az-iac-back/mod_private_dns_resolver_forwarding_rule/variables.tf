@@ -20,10 +20,10 @@ variable "enabled" {
 
 variable "target_dns_servers" {
   description = "The target DNS servers for forwarding."
-  type = object({
+  type = list(object({
     ip_address = string
     port       = number
-  })
+  }))
 }
 
 variable "metadata" {
