@@ -20,9 +20,9 @@ resource "azurerm_virtual_network_gateway" "vng" {
   virtual_wan_traffic_enabled           = var.virtual_wan_traffic_enabled
   vpn_type                              = var.vpn_type
   ip_configuration {
-    name                          = var.ip_configuration_name
-    private_ip_address_allocation = var.ip_configuration_private_ip_address_allocation
-    subnet_id                     = var.ip_configuration_subnet_id
-    public_ip_address_id          = var.ip_configuration_public_ip_address_id
+    name                          = var.ip_configuration.name
+    private_ip_address_allocation = var.ip_configuration.private_ip_address_allocation
+    subnet_id                     = var.ip_configuration.subnet_id
+    public_ip_address_id          = var.ip_configuration.public_ip_address_id
   }
 }
