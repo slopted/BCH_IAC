@@ -9,7 +9,7 @@ variable "resource_group_name" {
 }
 
 variable "location" {
-  description = "The Azure location where the Private DNS Zone will be created."
+  description = "The Azure location where the Private DNS Resolver will be created."
   type        = string
 }
 
