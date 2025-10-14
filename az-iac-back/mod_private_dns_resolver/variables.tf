@@ -14,7 +14,7 @@ variable "location" {
 }
 
 variable "virtual_network_id" {
-  description = "The ID of the virtual network to link with the Private DNS Zone."
+  description = "The ID of the virtual network to link with the Private DNS Resolver."
   type        = string
 }
 
