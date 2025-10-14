@@ -55,6 +55,6 @@ variable "spoke_to_hub" {
     allow_virtual_network_access = true
     allow_forwarded_traffic      = true
     allow_gateway_transit        = false
-    use_remote_gateways          = false
+    use_remote_gateways          = true
   }
 }
