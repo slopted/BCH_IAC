@@ -1,5 +1,5 @@
 variable "name" {
-  description = "The name of the Private DNS Zone."
+  description = "The name of the Private DNS Resolver."
   type        = string
 }
 
