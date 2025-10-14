@@ -11,12 +11,6 @@ variable "authorization_key" {
   sensitive   = true
 }
 
-variable "bandwidth_in_gbps" {
-  description = "The bandwidth in Gbps for the ExpressRoute circuit."
-  type        = number
-  default     = null
-}
-
 variable "bandwidth_in_mbps" {
   description = "The bandwidth in Mbps for the ExpressRoute circuit."
   type        = number
