@@ -1,57 +1,53 @@
-variable "resource_private_endpoint_name" {
-  description = "resource_private_endpoint_name"
+variable "name" {
   type        = string
+  description = "Name of the private endpoint"
+}
+
+variable "location" {
+  type        = string
+  description = "Azure region for the private endpoint"
 }
 
 variable "resource_group_name" {
-  description = "resource_group_name"
   type        = string
+  description = "Name of the resource group containing the private endpoint"
 }
 
-variable "resource_group_location" {
-  description = "resource_group_location"
+variable "subnet_id" {
   type        = string
+  description = "ID of the subnet to attach the private endpoint to"
 }
 
-variable "endpoint_resource_subnet_id" {
-  description = "endpoint_resource_subnet_id"
+variable "custom_network_interface_name" {
   type        = string
-}
-
-variable "private_service_connection_name" {
-  description = "private_service_connection_name"
-  type        = string
-}
-
-variable "private_connection_resource_id" {
-  description = "private_connection_resource_id"
-  type        = string
-}
-
-variable "private_service_connection_subresource_names" {
-  description = "private_service_connection_subresource_names"
-  type        = list
-  default     = ["queue"]
-}
-
-variable "private_service_connection_is_manual_connection" {
-  description = "private_service_connection_is_manual_connection"
-  type        = string
-  default = "false"
-}
-
-variable "pvt_dnszne_grp" {
-  description = "pvt_dnszne_grp"
-  type        = string
-}
-
-variable "private_dns_zone_ids" {
-  description = "private_dns_zone_ids"
-  type        = list
-}
-
-variable "tags" {
-  description = "tags"
-  type        = map
+  description = "Custom name for the network interface associated with the private endpoint"
   default     = null
+}
+
+variable "psc" {
+  type = object({
+    name                           = string
+    private_connection_resource_id = string
+    subresource_names              = list(string)
+    is_manual_connection           = bool
+  })
+  description = "Private service connection configuration for the private endpoint"
+  default = {
+    name                           = ""
+    private_connection_resource_id = ""
+    subresource_names              = []
+    is_manual_connection           = false
+  }
+}
+
+variable "pvt_dnsz_grp" {
+  type = object({
+    name                 = string
+    private_dns_zone_ids = list(string)
+  })
+  description = "Private DNS zone group configuration for the private endpoint"
+  default = {
+    name                 = ""
+    private_dns_zone_ids = []
+  }
 }

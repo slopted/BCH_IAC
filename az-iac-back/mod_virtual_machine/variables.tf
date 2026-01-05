@@ -26,6 +26,7 @@ variable "computer_name" {
 variable "network_interface_ids" {
   description = "Lista de NICs asociadas a la VM"
   type        = list(string)
+  default     = null
 }
 
 variable "proximity_placement_group_id" {
@@ -49,6 +50,13 @@ variable "os_disk_storage_account_type" {
   type        = string
 }
 
+variable "os_disk_disk_size_gb" {
+  description = "Tamaño del disco OS en GB"
+  type        = number
+  nullable    = true
+  default     = null
+}
+
 variable "source_image_reference_publisher" {
   description = "Publisher de la imagen"
   type        = string
@@ -69,20 +77,6 @@ variable "source_image_reference_version" {
   type        = string
 }
 
-variable "plan_publisher" {
-  description = "Publisher del plan Marketplace"
-  type        = string
-}
-
-variable "plan_product" {
-  description = "Producto del plan Marketplace"
-  type        = string
-}
-
-variable "plan_name" {
-  description = "Nombre del plan Marketplace"
-  type        = string
-}
 
 variable "storage_account_uri" {
   description = "URI de la storage account para boot diagnostics"
@@ -145,4 +139,30 @@ variable "data_disk_storage_account_type" {
   description = "Tipo de almacenamiento del disco de datos"
   type        = string
   default     = "Premium_LRS"
+}
+
+variable "create_vm_nic" {
+  description = "Indica si se debe crear la interfaz de red para la VM"
+  type        = bool
+  default     = true
+}
+
+variable "vm-nic" {
+  description = "Configuración de la interfaz de red de la VM"
+  type = object({
+    network_interface_name         = optional(string, "vm-nic-01")
+    accelerated_networking_enabled = optional(bool, true)
+    ip_configuration_name          = optional(string, "vm-ipcfg-01")
+    ip_configuration_subnet_id     = string
+    private_ip_address_allocation  = optional(string, "Dynamic")
+    private_ip_address             = optional(string, null)
+    public_ip_address_id           = optional(string, null)
+  })
+  default = null
+}
+
+variable "accept_marketplace_agreement" {
+  description = "Indica si se acepta el acuerdo de licencia del marketplace para la imagen seleccionada"
+  type        = bool
+  default     = false
 }
