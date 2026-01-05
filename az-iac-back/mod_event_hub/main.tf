@@ -1,5 +1,5 @@
 ###############################################################
-#                Azure Event Hub Namespace Module              #
+#                Azure Event Hub Namespace Module             #
 ###############################################################
 
 resource "azurerm_eventhub_namespace" "eh_nmspace" {
